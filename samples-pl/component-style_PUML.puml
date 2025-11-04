@@ -1,0 +1,24 @@
+@startuml
+skinparam BackgroundColor transparent
+' skinparam componentStyle uml2
+skinparam componentStyle rectangle
+component A {
+    component "A.1x" { 
+    }
+    component "A.9" 
+    [A.3x]
+    component A.5 [
+    A.5] 
+    component A.6 [
+    ]
+    component "A.4x" {
+        [A44.1]
+        component "C.y" {
+        [C.11]
+        [B11.2]
+        [S35.5]
+        }
+    }
+}
+[a]->[b]
+@enduml
