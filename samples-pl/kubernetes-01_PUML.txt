@@ -1,0 +1,92 @@
+@startuml kubernetes
+
+footer Kubernetes Plant-UML more stuff
+scale max 1024 width
+
+skinparam nodesep 10
+skinparam ranksep 10
+
+' Kubernetes
+!define KubernetesPuml https://raw.githubusercontent.com/dcasati/kubernetes-PlantUML/master/dist
+
+!includeurl KubernetesPuml/kubernetes_Common.puml
+!includeurl KubernetesPuml/kubernetes_Context.puml
+!includeurl KubernetesPuml/kubernetes_Simplified.puml
+
+!includeurl KubernetesPuml/OSS/KubernetesSvc.puml
+!includeurl KubernetesPuml/OSS/KubernetesIng.puml
+!includeurl KubernetesPuml/OSS/KubernetesPod.puml
+!includeurl KubernetesPuml/OSS/KubernetesRs.puml
+!includeurl KubernetesPuml/OSS/KubernetesDeploy.puml
+!includeurl KubernetesPuml/OSS/KubernetesHpa.puml
+' more from OSS S
+!includeurl KubernetesPuml/OSS/all.puml
+!includeurl KubernetesPuml/OSS/KubernetesApi.puml
+!includeurl KubernetesPuml/OSS/KubernetesCcm.puml
+!includeurl KubernetesPuml/OSS/KubernetesCm.puml
+!includeurl KubernetesPuml/OSS/KubernetesCrb.puml
+!includeurl KubernetesPuml/OSS/KubernetesCrd.puml
+!includeurl KubernetesPuml/OSS/KubernetesCrole.puml
+!includeurl KubernetesPuml/OSS/KubernetesCronjob.puml
+!includeurl KubernetesPuml/OSS/KubernetesDeploy.puml
+!includeurl KubernetesPuml/OSS/KubernetesDs.puml
+!includeurl KubernetesPuml/OSS/KubernetesEp.puml
+!includeurl KubernetesPuml/OSS/KubernetesEtcd.puml
+!includeurl KubernetesPuml/OSS/KubernetesGroup.puml
+!includeurl KubernetesPuml/OSS/KubernetesHpa.puml
+!includeurl KubernetesPuml/OSS/KubernetesIng.puml
+!includeurl KubernetesPuml/OSS/KubernetesJob.puml
+!includeurl KubernetesPuml/OSS/KubernetesKproxy.puml
+!includeurl KubernetesPuml/OSS/KubernetesKubelet.puml
+!includeurl KubernetesPuml/OSS/KubernetesLimits.puml
+!includeurl KubernetesPuml/OSS/KubernetesMaster.puml
+!includeurl KubernetesPuml/OSS/KubernetesNetpol.puml
+!includeurl KubernetesPuml/OSS/KubernetesNode.puml
+!includeurl KubernetesPuml/OSS/KubernetesNs.puml
+!includeurl KubernetesPuml/OSS/KubernetesPod.puml
+!includeurl KubernetesPuml/OSS/KubernetesPsp.puml
+!includeurl KubernetesPuml/OSS/KubernetesPvc.puml
+!includeurl KubernetesPuml/OSS/KubernetesPv.puml
+!includeurl KubernetesPuml/OSS/KubernetesQuota.puml
+!includeurl KubernetesPuml/OSS/KubernetesRb.puml
+!includeurl KubernetesPuml/OSS/KubernetesRole.puml
+!includeurl KubernetesPuml/OSS/KubernetesRs.puml
+!includeurl KubernetesPuml/OSS/KubernetesSa.puml
+!includeurl KubernetesPuml/OSS/KubernetesSched.puml
+!includeurl KubernetesPuml/OSS/KubernetesSc.puml
+!includeurl KubernetesPuml/OSS/KubernetesSecret.puml
+!includeurl KubernetesPuml/OSS/KubernetesSts.puml
+!includeurl KubernetesPuml/OSS/KubernetesSvc.puml
+!includeurl KubernetesPuml/OSS/KubernetesUser.puml
+!includeurl KubernetesPuml/OSS/KubernetesVol.puml
+' more from OSS E
+
+
+actor "User" as userAlias
+left to right direction
+
+' Kubernetes Components
+Cluster_Boundary(cluster, "Markets Dedicated Kubernetes Cluster") {
+    Namespace_Boundary(ns, "OPS360") {
+        'KubernetesIng(ingress, "pricing.domain.com", "")
+        KubernetesSvc(svcpricing, "Pricing API services", "")
+        KubernetesSvc(svcspline, "Spline API services", "")
+        KubernetesSvc(svcthin, "Thin Client services", "")
+    }
+}
+
+'Rel(userAlias,ingress," ")
+'Rel(ingress,svc," ")
+
+' Rel(svc,pod1," ")
+' Rel(svc,pod2," ")
+' Rel(svc,pod3," ")
+
+'el_U(rs,pod1," ")
+'Rel_U(rs,pod2," ")
+'Rel_U(rs,pod3," ")
+
+'Rel_U(deploy,rs, " ")
+'Rel_U(hpa,deploy, " ")
+
+@enduml
